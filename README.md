@@ -6,10 +6,10 @@ Once you start the game, you will be presented with a list of numbers and a sort
 
 ## Usage
 
-Make sure you have git and java installed on your machine. Then, perform the following steps in the terminal, where `x` is the number of rounds you want to play the game for (use 0 for an infinite game):
+Make sure you have git and java installed on your machine. Then, perform the following steps in the terminal, where `x` is the number of rounds you want to play the game for (use 0 for an infinite game) and where `y` is the number of numbers you want to be in the array each round:
 
 ```
 git clone https://github.com/shsitaram/SortingAlgorithmGame.git
 cd src
-javac GUI.java && java GUI x
+javac GUI.java && java GUI x y
 ```

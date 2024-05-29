@@ -15,19 +15,24 @@ import javax.swing.JPanel;
 public final class GUI {
     private static final int WIDTH = 500;
     private static final int HEIGHT = 500;
-    private final int rounds;
 
     /**
      * Constructor for the GUI. Sets up all the elements in the GUI.
      *
      * @param r the number of rounds to be played
+     * @param elc the number of elements in the array
      */
-    public GUI(int r) {
+    public GUI(int r, int elc) {
+        if (elc < 2) {
+            throw new IllegalArgumentException("The number of elements must be at least 2.");
+        }
+        if (r < 0) {
+            throw new IllegalArgumentException("The number of rounds must be at least 0.");
+        }
+
         final JFrame frame = new JFrame("Sorting Algorithm Visualizer");
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        rounds = r;
 
         final JPanel titleHolder = new JPanel();
 
@@ -48,7 +53,7 @@ public final class GUI {
         selectorAndGraph.add(graphPanel, BorderLayout.CENTER);
 
         final Graph graph = new Graph(graphPanel);
-        final SortSelector selector = new SortSelector(selectorPanel, graph, rounds);
+        final SortSelector selector = new SortSelector(selectorPanel, graph, r, elc);
 
         frame.add(titleHolder, BorderLayout.NORTH);
         frame.add(selectorAndGraph, BorderLayout.CENTER);
@@ -62,9 +67,9 @@ public final class GUI {
     /**
      * Main method to run the program.
      *
-     * @param args command line arguments; the first element should be the number of rounds
+     * @param args command line arguments; the first element should be the number of rounds; the second element should be the number of elements
      */
     public static void main(String[] args) {
-        new GUI(Integer.parseInt(args[0]));
+        new GUI(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
     }
 }

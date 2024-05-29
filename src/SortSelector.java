@@ -33,6 +33,7 @@ public final class SortSelector {
     private int answer;
     private int score;
     private final int rounds;
+    private final int element_count;
     private int rounds_completed;
     private long sum_times;
     private long sum_all_times;
@@ -46,10 +47,12 @@ public final class SortSelector {
      * @param parent the JPanel that contains the buttons
      * @param graph the graph that contains the Graph object.
      * @param rounds the number of rounds to be played.
+     * @param element_count the number of elements in the array
      */
-    public SortSelector(JPanel parent, Graph graph, int rounds) {
+    public SortSelector(JPanel parent, Graph graph, int rounds, int element_count) {
         this.graph = graph;
         this.rounds = rounds;
+        this.element_count = element_count;
         rounds_completed = 0;
         sum_times = 0;
 
@@ -71,8 +74,8 @@ public final class SortSelector {
             button.setForeground(NORMAL_COLOR);
         }
 
-        final int[] array = new int[10];
-        for (int i = 0; i < 10; ++i) {
+        final int[] array = new int[element_count];
+        for (int i = 0; i < element_count; ++i) {
             array[i] = (int) (Math.random() * 1000000000) + 1;
         }
         graph.setToArray(array);
@@ -116,14 +119,12 @@ public final class SortSelector {
         sum_all_times += endTime - startTime;
 
         if (rounds_completed == rounds) {
-            JOptionPane.showMessageDialog(null, "You scored " + score + " out of " + rounds + " rounds. On average, it took you " + ((double) sum_times / rounds) + " milliseconds per round correct and " + ((double) sum_all_times / rounds) + " milliseconds per round overall.");
+            JOptionPane.showMessageDialog(null, "You got the answer correct on " + score + " out of " + rounds + " rounds. On average, it took you " + ((double) sum_times / rounds) + " milliseconds per round correct and " + ((double) sum_all_times / rounds) + " milliseconds per round overall. The number of elements in each array was " + element_count + ".");
             return;
         }
 
         Timer nrTimer = new Timer(2000, e -> startRound());
         nrTimer.setRepeats(false);
         nrTimer.start();
-
-        ++rounds_completed;
     }
 }
