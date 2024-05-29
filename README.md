@@ -10,6 +10,6 @@ Make sure you have git and java installed on your machine. Then, perform the fol
 
 ```
 git clone https://github.com/shsitaram/SortingAlgorithmGame.git
-cd src
+cd SortingAlgorithmGame/src
 javac GUI.java && java GUI x y
 ```
