@@ -67,7 +67,7 @@ public final class GUI {
     /**
      * Main method to run the program.
      *
-     * @param args command line arguments; the first element should be the number of rounds; the second element should be the number of elements
+     * @param args command line arguments; the first element should be the number of rounds; the second element should be the number of values in the array every round
      */
     public static void main(String[] args) {
         new GUI(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
